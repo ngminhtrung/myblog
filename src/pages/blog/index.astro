@@ -12,7 +12,8 @@ const posts = (await getCollection('blog')).sort(
 );
 
 const basePath = import.meta.env.BASE_URL;
-const withBase = (path = '') => `${basePath}${path.replace(/^\//, '')}`;
+const baseWithSlash = basePath.endsWith('/') ? basePath : `${basePath}/`;
+const withBase = (path = '') => `${baseWithSlash}${path.replace(/^\//, '')}`;
 ---
 
 <!doctype html>
