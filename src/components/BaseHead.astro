@@ -4,6 +4,8 @@
 import '../styles/global.css';
 import type { ImageMetadata } from 'astro';
 import FallbackImage from '../assets/blog-placeholder-1.jpg';
+import fontBold from '../assets/fonts/atkinson-bold.woff?url';
+import fontRegular from '../assets/fonts/atkinson-regular.woff?url';
 import { SITE_TITLE } from '../consts';
 
 interface Props {
@@ -13,6 +15,9 @@ interface Props {
 }
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const basePath = import.meta.env.BASE_URL;
+const withBase = (path: string) =>
+	path.startsWith('http') ? path : `${basePath}${path.replace(/^\//, '')}`;
 
 const { title, description, image = FallbackImage } = Astro.props;
 ---
@@ -20,8 +25,8 @@ const { title, description, image = FallbackImage } = Astro.props;
 <!-- Global Metadata -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-<link rel="sitemap" href="/sitemap-index.xml" />
+<link rel="icon" type="image/svg+xml" href={withBase('favicon.svg')} />
+<link rel="sitemap" href={withBase('sitemap-index.xml')} />
 <link
 	rel="alternate"
 	type="application/rss+xml"
@@ -31,8 +36,14 @@ const { title, description, image = FallbackImage } = Astro.props;
 <meta name="generator" content={Astro.generator} />
 
 <!-- Font preloads -->
-<link rel="preload" href="/fonts/atkinson-regular.woff" as="font" type="font/woff" crossorigin />
-<link rel="preload" href="/fonts/atkinson-bold.woff" as="font" type="font/woff" crossorigin />
+<link
+	rel="preload"
+	href={fontRegular}
+	as="font"
+	type="font/woff"
+	crossorigin
+/>
+<link rel="preload" href={fontBold} as="font" type="font/woff" crossorigin />
 
 <!-- Canonical URL -->
 <link rel="canonical" href={canonicalURL} />
