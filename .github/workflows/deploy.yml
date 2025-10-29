@@ -17,6 +17,8 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      KROKI_SERVER_URL: https://kroki.io
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4

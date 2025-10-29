@@ -42,11 +42,12 @@ Any static assets, like images, can be placed in the `public/` directory.
 
 ## 📝 Diagrams with Kroki & PlantUML
 
-Markdown code fences with the `plantuml` language are rendered as inline SVGs during `astro build` using [Kroki](https://kroki.io/). By default the site calls the hosted service, but you can point the renderer at any Kroki-compatible server by setting `KROKI_SERVER_URL`.
+Set the `KROKI_SERVER_URL` environment variable to render diagrams using [Kroki](https://kroki.io). When the variable is absent, PlantUML fences render as plain code blocks (helpful offline). Any existing Kroki-compatible server is supported.
 
-**Use the hosted service (default)**
+**Use the hosted service**
 
 ```bash
+export KROKI_SERVER_URL=https://kroki.io
 npm run build
 ```
 
@@ -57,7 +58,7 @@ docker run --rm -p 8000:8000 yuzutech/kroki
 KROKI_SERVER_URL=http://localhost:8000 npm run build
 ```
 
-The env var works both locally and in CI workflows, making it easy to switch between the public service and a self-hosted instance when network access is restricted.
+Set `KROKI_SERVER_URL=disable` (or simply unset it) if you want to bypass diagram rendering during a build.
 
 ## 🧞 Commands
 
