@@ -17,8 +17,13 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    services:
+      kroki:
+        image: yuzutech/kroki
+        ports:
+          - 8000:8000
     env:
-      KROKI_SERVER_URL: https://kroki.io
+      KROKI_SERVER_URL: http://localhost:8000
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4

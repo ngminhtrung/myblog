@@ -42,7 +42,7 @@ Any static assets, like images, can be placed in the `public/` directory.
 
 ## 📝 Diagrams with Kroki & PlantUML
 
-Set the `KROKI_SERVER_URL` environment variable to render diagrams using [Kroki](https://kroki.io). When the variable is absent, PlantUML fences render as plain code blocks (helpful offline). Any existing Kroki-compatible server is supported.
+Set the `KROKI_SERVER_URL` environment variable to render diagrams using [Kroki](https://kroki.io). When the variable is absent, PlantUML fences render as plain code blocks (helpful offline). Any existing Kroki-compatible server is supported, and the GitHub Pages workflow spins up a local Kroki container automatically.
 
 **Use the hosted service**
 
