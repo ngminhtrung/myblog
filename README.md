@@ -40,6 +40,25 @@ The `src/content/` directory contains "collections" of related Markdown and MDX 
 
 Any static assets, like images, can be placed in the `public/` directory.
 
+## 📝 Diagrams with Kroki & PlantUML
+
+Markdown code fences with the `plantuml` language are rendered as inline SVGs during `astro build` using [Kroki](https://kroki.io/). By default the site calls the hosted service, but you can point the renderer at any Kroki-compatible server by setting `KROKI_SERVER_URL`.
+
+**Use the hosted service (default)**
+
+```bash
+npm run build
+```
+
+**Use a local Kroki container**
+
+```bash
+docker run --rm -p 8000:8000 yuzutech/kroki
+KROKI_SERVER_URL=http://localhost:8000 npm run build
+```
+
+The env var works both locally and in CI workflows, making it easy to switch between the public service and a self-hosted instance when network access is restricted.
+
 ## 🧞 Commands
 
 All commands are run from the root of the project, from a terminal:

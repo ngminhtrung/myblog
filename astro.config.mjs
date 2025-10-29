@@ -5,6 +5,8 @@ import sitemap from '@astrojs/sitemap';
 import { defineConfig } from 'astro/config';
 import { remarkKroki } from 'remark-kroki';
 
+const krokiServer = process.env.KROKI_SERVER_URL ?? 'https://kroki.io';
+
 // https://astro.build/config
 export default defineConfig({
 	site: 'https://ngminhtrung.github.io/myblog',
@@ -15,9 +17,9 @@ export default defineConfig({
 			[
 				remarkKroki,
 				{
-					serverUrl: 'https://kroki.io',
+					server: krokiServer,
 					output: 'inline-svg',
-					inline: true,
+					alias: ['plantuml'],
 				},
 			],
 		],
